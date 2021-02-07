@@ -49,6 +49,7 @@
 %token OpAssign
 %token<double> Number
 %token<std::string> Ident
+%token<std::string> String
 %token EOL
 %token LineComment
 %token BlockComment
@@ -71,7 +72,8 @@
     ;
 
     stmt: PrintKw expr    { cout<<$2<<endl; }
-        | Ident OpAssign expr  { vars.emplace($1,$3); }
+        | PrintKw String {cout<<$2<<endl; }
+        | Ident OpAssign expr  { vars[$1] = $3; }
         | expr { cout<<"Resultado = "<<$1<<endl; }
     ;
     
@@ -100,7 +102,7 @@
     factor: Number { $$ = $1; }
         | Ident{
 
-            $$ = vars.at($1);
+            $$ = vars[$1];
 
         }
         | LParenthesis expr RParenthesis { $$ = $2; }

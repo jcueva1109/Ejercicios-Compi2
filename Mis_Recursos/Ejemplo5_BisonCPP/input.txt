@@ -4,15 +4,48 @@
 
 10+1
 10+2
+
+/*
+
+    Probando
+    los 
+    comentarios
+    de 
+    bloque
+
+*/
+
 1.5+1.1
 1.2+2.2
+
+/*
+
+    Probando
+    los 
+    comentarios
+    de 
+    bloque
+
+*/
+
 100/2
 9*2.2
+
+/*
+
+    Probando
+    los 
+    comentarios
+    de 
+    bloque
+
+*/
+
 x = (9099+1)
 print (x)
 
 a = 1+2
-
+a = 20
 print a
 
 /*
@@ -30,11 +63,11 @@ print a
 j = ( 10 + 7 )
 e = ( 10 + 7 ) * 5
 
-print j 
-print e
+print j + e
 
 //print abc
 
-
-
+print "Jesus Orlando Cueva Villela"
+print "Johnnie Noe Miralda Lemus"
+print ("Gerardo Ramon Gonzales Del Cid")
 

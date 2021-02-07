@@ -375,6 +375,7 @@ namespace  Expr  {
       char dummy1[sizeof (double)];
 
       // Ident
+      // String
       char dummy2[sizeof (std::string)];
     };
 
@@ -424,10 +425,11 @@ namespace  Expr  {
         OpAssign = 265,
         Number = 266,
         Ident = 267,
-        EOL = 268,
-        LineComment = 269,
-        BlockComment = 270,
-        Error = 271
+        String = 268,
+        EOL = 269,
+        LineComment = 270,
+        BlockComment = 271,
+        Error = 272
       };
     };
 
@@ -524,13 +526,14 @@ namespace  Expr  {
 switch (yytype)
     {
       case 11: // Number
-      case 22: // expr
-      case 23: // term
-      case 24: // factor
+      case 23: // expr
+      case 24: // term
+      case 25: // factor
         value.template destroy< double > ();
         break;
 
       case 12: // Ident
+      case 13: // String
         value.template destroy< std::string > ();
         break;
 
@@ -633,13 +636,13 @@ switch (yytype)
       symbol_type (int tok, std::string v)
         : super_type(token_type (tok), std::move (v))
       {
-        YY_ASSERT (tok == token::Ident);
+        YY_ASSERT (tok == token::Ident || tok == token::String);
       }
 #else
       symbol_type (int tok, const std::string& v)
         : super_type(token_type (tok), v)
       {
-        YY_ASSERT (tok == token::Ident);
+        YY_ASSERT (tok == token::Ident || tok == token::String);
       }
 #endif
     };
@@ -826,6 +829,21 @@ switch (yytype)
       make_Ident (const std::string& v)
       {
         return symbol_type (token::Ident, v);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_String (std::string v)
+      {
+        return symbol_type (token::String, std::move (v));
+      }
+#else
+      static
+      symbol_type
+      make_String (const std::string& v)
+      {
+        return symbol_type (token::String, v);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1194,10 +1212,10 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 26,     ///< Last index in yytable_.
+      yylast_ = 31,     ///< Last index in yytable_.
       yynnts_ = 8,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
-      yyntokens_ = 17  ///< Number of tokens.
+      yyntokens_ = 18  ///< Number of tokens.
     };
 
 
@@ -1208,7 +1226,7 @@ switch (yytype)
 
 #line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
 } //  Expr 
-#line 1212 "tokens.h"
+#line 1230 "tokens.h"
 
 
 
