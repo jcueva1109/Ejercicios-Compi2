@@ -1,5 +1,6 @@
 %option noyywrap
 %option nodefault
+%option yylineno
 
 %{
 
@@ -9,25 +10,27 @@
     #include "tokens.h"
     using namespace std;
 
+    #define YY_DECL double yylex(Expr::Parser::semantic_type *yylval)
+
 %}
 
 %x BlockComment
 
 %%
 
-"//"[^\n]* return LineComment;
+"//"[^\n]* return Expr::Parser::token::LineComment;
 "/*" {BEGIN(BlockComment);}
-[\n]+ return EOL;
-[ ] ;       //Ignorar espacios
-"+" return OpAdd;
-"-" return OpSub;
-"*" return OpMul;
-"/" return OpDiv;
-"(" return LParenthesis;
-")" return RParenthesis;
-[_a-zA-Z][_a-zA-Z0-9]* { yylval->emplace<std::string (yytext, yyleng); } return Ident;
-[0-9]+ { yylav->emplace<int>(atoi(yytext)); } return Number;       //Numeros enteros
-. return Error;
+[\n]+ return Expr::Parser::token::EOL;
+[ ] ;
+"+" return Expr::Parser::token::OpAdd;
+"-" return Expr::Parser::token::OpSub;
+"*" return Expr::Parser::token::OpMul;
+"/" return Expr::Parser::token::OpDiv;
+"(" return Expr::Parser::token::LParenthesis;
+")" return Expr::Parser::token::RParenthesis;
+[0-9]+("."[0-9]+)? { yylval->emplace<double>(atof(yytext));  return Expr::Parser::token::Number; }
+[_a-zA-Z][_a-zA-Z0-9]* { yylval->emplace<std::string> (yytext, yyleng);  return Expr::Parser::token::Ident; }
+. return Expr::Parser::token::Error;
 
 <BlockComment>"*/" {BEGIN(INITIAL);}
 <BlockComment>.|\n {  }

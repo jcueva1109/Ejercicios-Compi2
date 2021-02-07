@@ -3,13 +3,12 @@
 %define api.value.type variant
 
 %define api.parser.class { Parser }
-%define api.parser.namespace { Expr }
+%define api.namespace { Expr }
 
-%parse-param { std::unordered_map<std::string, int>& vars }
+%parse-param { std::unordered_map<std::string, double>& vars }
 
-%token<int> Number
-%token<std::string> Ident
-%type<int> expr term factor
+// %token<int> Number
+// %token<std::string> Ident
 
 %code requires{
 
@@ -24,19 +23,21 @@
     #include <stdexcept>
     #include <unordered_map>
     #include <string>
+    #include "tokens.h"
     using namespace std;
 
-    int yylex(Expr::Parser::semantic_type **yylval);
+    double yylex(Expr::Parser::semantic_type *yylval);
+
+    namespace Expr{
+
+        void Parser::error(const std::string& msg){
+            throw std::runtime_error(msg);
+        }
+
+    }
 
 %}
 
-namespace Expr{
-
-    void Parser::error(const std::sring& msg){
-        throw std::runtime_error(msg);
-    }
-
-}
 
 %token OpAdd
 %token OpSub
@@ -44,17 +45,19 @@ namespace Expr{
 %token OpDiv
 %token LParenthesis
 %token RParenthesis
-%token<int> Number
+%token<double> Number
 %token<std::string> Ident
 %token EOL
 %token LineComment
 %token BlockComment
 %token Error
 
+%type<double> expr term factor
+
 %%
 
-    input: EOL_List input EOL_List expr { cout<<"Resultado = "<<$4<<endl; }
-        |  expr { cout<<"Resultado = "<<$1<<endl; }
+    input: expr { cout<<"Resultado = "<<$1<<endl; }
+        |  input EOL_List expr { cout<<"Resultado = "<<$3<<endl; }  
     ;
     
     EOL_List: EOL_List EOL {  }
@@ -70,7 +73,7 @@ namespace Expr{
         | term OpDiv factor { 
 
             if($3 == 0){
-                throw std::string("Error: No se puede dividir entre 0!\n");
+                throw runtime_error("Error: No se puede dividir entre 0!\n");
             }else{
                 $$ = $1 / $3;
             }
@@ -82,9 +85,7 @@ namespace Expr{
     factor: Number { $$ = $1; }
         | Ident{
 
-            std::string ident = $1;
-            vars[$2];
-            free($1);
+            $$ = vars.at($1);
 
         }
         | LParenthesis expr RParenthesis { $$ = $2; }

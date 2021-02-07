@@ -1,14 +1,15 @@
 #include <iostream>
-#include <fstream>
+#include <unordered_map>
+#include <stdexcept>
 #include "tokens.h"
 using namespace std;
 
 int main(){
 
-    // std::unordered_map<std::string, int>& vars;
-    // Expr::Parser parser(vars);
-    // parser();
-    cout<<"Hello World!"<<endl;
-
+    unordered_map<std::string, double> vars;
+    Expr::Parser parser(vars);
+    parser();
+    
+    return 0;
 
 }
