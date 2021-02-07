@@ -1,6 +1,40 @@
+// Primera Linea
+
+// Line Comment
+
 10+1
 10+2
 1.5+1.1
 1.2+2.2
 100/2
-1/0
+9*2.2
+x = (9099+1)
+print (x)
+
+a = 1+2
+
+print a
+
+/*
+
+    Probando
+    los 
+    comentarios
+    de 
+    bloque
+
+*/
+
+
+
+j = ( 10 + 7 )
+e = ( 10 + 7 ) * 5
+
+print j 
+print e
+
+//print abc
+
+
+
+

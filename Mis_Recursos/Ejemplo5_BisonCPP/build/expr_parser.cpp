@@ -209,14 +209,14 @@ namespace  Expr  {
   {
     switch (this->type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.move< double > (std::move (that.value));
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -234,14 +234,14 @@ namespace  Expr  {
   {
     switch (this->type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.copy< double > (YY_MOVE (that.value));
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -267,14 +267,14 @@ namespace  Expr  {
     super_type::move (s);
     switch (this->type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.move< double > (YY_MOVE (s.value));
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -368,14 +368,14 @@ namespace  Expr  {
   {
     switch (that.type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.YY_MOVE_OR_COPY< double > (YY_MOVE (that.value));
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
@@ -394,14 +394,14 @@ namespace  Expr  {
   {
     switch (that.type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.move< double > (YY_MOVE (that.value));
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
@@ -420,14 +420,14 @@ namespace  Expr  {
     state = that.state;
     switch (that.type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.copy< double > (that.value);
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.copy< std::string > (that.value);
         break;
 
@@ -444,14 +444,14 @@ namespace  Expr  {
     state = that.state;
     switch (that.type_get ())
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.move< double > (that.value);
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.move< std::string > (that.value);
         break;
 
@@ -699,14 +699,14 @@ namespace  Expr  {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         yylhs.value.emplace< double > ();
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         yylhs.value.emplace< std::string > ();
         break;
 
@@ -724,50 +724,56 @@ namespace  Expr  {
         {
           switch (yyn)
             {
-  case 2:
-#line 59 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                { cout<<"Resultado = "<<yystack_[0].value.as < double > ()<<endl; }
+  case 5:
+#line 73 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                          { cout<<yystack_[0].value.as < double > ()<<endl; }
 #line 731 "expr_parser.cpp"
     break;
 
-  case 3:
-#line 60 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                               { cout<<"Resultado = "<<yystack_[0].value.as < double > ()<<endl; }
+  case 6:
+#line 74 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                               { vars.emplace(yystack_[2].value.as < std::string > (),yystack_[0].value.as < double > ()); }
 #line 737 "expr_parser.cpp"
     break;
 
-  case 4:
-#line 63 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                           {  }
+  case 7:
+#line 75 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+               { cout<<"Resultado = "<<yystack_[0].value.as < double > ()<<endl; }
 #line 743 "expr_parser.cpp"
     break;
 
-  case 6:
-#line 67 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () + yystack_[0].value.as < double > (); }
+  case 8:
+#line 78 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                           {  }
 #line 749 "expr_parser.cpp"
     break;
 
-  case 7:
-#line 68 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () - yystack_[0].value.as < double > (); }
+  case 10:
+#line 82 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () + yystack_[0].value.as < double > (); }
 #line 755 "expr_parser.cpp"
     break;
 
-  case 8:
-#line 69 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-               { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
+  case 11:
+#line 83 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () - yystack_[0].value.as < double > (); }
 #line 761 "expr_parser.cpp"
     break;
 
-  case 9:
-#line 72 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                            { yylhs.value.as < double > () = yystack_[2].value.as < double > () * yystack_[0].value.as < double > (); }
+  case 12:
+#line 84 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+               { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
 #line 767 "expr_parser.cpp"
     break;
 
-  case 10:
-#line 73 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+  case 13:
+#line 87 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                            { yylhs.value.as < double > () = yystack_[2].value.as < double > () * yystack_[0].value.as < double > (); }
+#line 773 "expr_parser.cpp"
+    break;
+
+  case 14:
+#line 88 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
                             { 
 
             if(yystack_[0].value.as < double > () == 0){
@@ -777,39 +783,39 @@ namespace  Expr  {
             }
 
         }
-#line 781 "expr_parser.cpp"
-    break;
-
-  case 11:
-#line 82 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                 { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
 #line 787 "expr_parser.cpp"
     break;
 
-  case 12:
-#line 85 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                   { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
+  case 15:
+#line 97 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                 { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
 #line 793 "expr_parser.cpp"
     break;
 
-  case 13:
-#line 86 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+  case 16:
+#line 100 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                   { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
+#line 799 "expr_parser.cpp"
+    break;
+
+  case 17:
+#line 101 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
                {
 
             yylhs.value.as < double > () = vars.at(yystack_[0].value.as < std::string > ());
 
         }
-#line 803 "expr_parser.cpp"
-    break;
-
-  case 14:
-#line 91 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                                         { yylhs.value.as < double > () = yystack_[1].value.as < double > (); }
 #line 809 "expr_parser.cpp"
     break;
 
+  case 18:
+#line 106 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+                                         { yylhs.value.as < double > () = yystack_[1].value.as < double > (); }
+#line 815 "expr_parser.cpp"
+    break;
 
-#line 813 "expr_parser.cpp"
+
+#line 819 "expr_parser.cpp"
 
             default:
               break;
@@ -1076,74 +1082,77 @@ namespace  Expr  {
   }
 
 
-  const signed char  Parser ::yypact_ninf_ = -7;
+  const signed char  Parser ::yypact_ninf_ = -12;
 
   const signed char  Parser ::yytable_ninf_ = -1;
 
   const signed char
    Parser ::yypact_[] =
   {
-      -6,    -6,    -7,    -7,     0,     4,    13,    -7,     2,    -7,
-      -7,     6,    -6,    -6,    -6,    -6,    -7,    -7,     4,    13,
-      13,    -7,    -7
+     -11,   -12,     4,    -4,   -12,    -1,    -1,   -12,     8,   -12,
+     -11,   -12,    13,    15,   -12,   -12,    11,    13,    -1,    -4,
+      -1,    -1,    -1,    -1,   -12,    13,   -12,    15,    15,   -12,
+     -12
   };
 
   const signed char
    Parser ::yydefact_[] =
   {
-       0,     0,    12,    13,     0,     2,     8,    11,     0,     1,
-       5,     0,     0,     0,     0,     0,    14,     4,     3,     6,
-       7,     9,    10
+       0,     9,     0,     0,     1,     0,     0,    16,    17,     8,
+       0,     4,     7,    12,    15,    17,     0,     5,     0,     2,
+       0,     0,     0,     0,    18,     6,     3,    10,    11,    13,
+      14
   };
 
   const signed char
    Parser ::yypgoto_[] =
   {
-      -7,    -7,    -7,     1,     8,     9
+     -12,   -12,   -12,    -7,    14,    -5,     2,     3
   };
 
   const signed char
    Parser ::yydefgoto_[] =
   {
-      -1,     4,    11,     5,     6,     7
+      -1,     2,    10,    11,     3,    12,    13,    14
   };
 
   const signed char
    Parser ::yytable_[] =
   {
-       9,     1,     8,     2,     3,    12,    13,    12,    13,     0,
-      16,    10,    18,     1,     0,     2,     3,    17,    14,    15,
-      19,    20,     0,    21,    22
+      16,    17,     1,     5,     4,     6,     5,     7,     8,     9,
+       7,    15,    26,    25,    20,    21,    20,    21,    18,    24,
+      22,    23,    27,    28,    19,    29,    30
   };
 
   const signed char
    Parser ::yycheck_[] =
   {
-       0,     7,     1,     9,    10,     3,     4,     3,     4,    -1,
-       8,    11,    11,     7,    -1,     9,    10,    11,     5,     6,
-      12,    13,    -1,    14,    15
+       5,     6,    13,     7,     0,     9,     7,    11,    12,    13,
+      11,    12,    19,    18,     3,     4,     3,     4,    10,     8,
+       5,     6,    20,    21,    10,    22,    23
   };
 
   const signed char
    Parser ::yystos_[] =
   {
-       0,     7,     9,    10,    16,    18,    19,    20,    18,     0,
-      11,    17,     3,     4,     5,     6,     8,    11,    18,    19,
-      19,    20,    20
+       0,    13,    18,    21,     0,     7,     9,    11,    12,    13,
+      19,    20,    22,    23,    24,    12,    22,    22,    10,    21,
+       3,     4,     5,     6,     8,    22,    20,    23,    23,    24,
+      24
   };
 
   const signed char
    Parser ::yyr1_[] =
   {
-       0,    15,    16,    16,    17,    17,    18,    18,    18,    19,
-      19,    19,    20,    20,    20
+       0,    17,    18,    19,    19,    20,    20,    20,    21,    21,
+      22,    22,    22,    23,    23,    23,    24,    24,    24
   };
 
   const signed char
    Parser ::yyr2_[] =
   {
-       0,     2,     1,     3,     2,     1,     3,     3,     1,     3,
-       3,     1,     1,     1,     3
+       0,     2,     3,     3,     1,     2,     3,     1,     2,     1,
+       3,     3,     1,     3,     3,     1,     1,     1,     3
   };
 
 
@@ -1154,17 +1163,17 @@ namespace  Expr  {
   const  Parser ::yytname_[] =
   {
   "$end", "error", "$undefined", "OpAdd", "OpSub", "OpMul", "OpDiv",
-  "LParenthesis", "RParenthesis", "Number", "Ident", "EOL", "LineComment",
-  "BlockComment", "Error", "$accept", "input", "EOL_List", "expr", "term",
-  "factor", YY_NULLPTR
+  "LParenthesis", "RParenthesis", "PrintKw", "OpAssign", "Number", "Ident",
+  "EOL", "LineComment", "BlockComment", "Error", "$accept", "input",
+  "stmt_list", "stmt", "EOL_List", "expr", "term", "factor", YY_NULLPTR
   };
 
 #if YYDEBUG
   const signed char
    Parser ::yyrline_[] =
   {
-       0,    59,    59,    60,    63,    64,    67,    68,    69,    72,
-      73,    82,    85,    86,    91
+       0,    67,    67,    69,    70,    73,    74,    75,    78,    79,
+      82,    83,    84,    87,    88,    97,   100,   101,   106
   };
 
   // Print the state stack on the debug stream.
@@ -1231,9 +1240,10 @@ namespace  Expr  {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    13,    14
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16
     };
-    const int user_token_number_max_ = 269;
+    const int user_token_number_max_ = 271;
 
     if (t <= 0)
       return yyeof_;
@@ -1245,6 +1255,6 @@ namespace  Expr  {
 
 #line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
 } //  Expr 
-#line 1249 "expr_parser.cpp"
+#line 1259 "expr_parser.cpp"
 
-#line 94 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 109 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"

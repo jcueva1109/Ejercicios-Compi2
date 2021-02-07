@@ -45,6 +45,8 @@
 %token OpDiv
 %token LParenthesis
 %token RParenthesis
+%token PrintKw
+%token OpAssign
 %token<double> Number
 %token<std::string> Ident
 %token EOL
@@ -54,10 +56,23 @@
 
 %type<double> expr term factor
 
+// expr { cout<<"Resultado = "<<$1<<endl; }
+//         |  input EOL_List expr { cout<<"Resultado = "<<$3<<endl; }  
+//     ;
+
 %%
 
-    input: expr { cout<<"Resultado = "<<$1<<endl; }
-        |  input EOL_List expr { cout<<"Resultado = "<<$3<<endl; }  
+    
+
+    input: EOL_List stmt_list EOL_List;
+
+    stmt_list: stmt_list EOL_List stmt
+            | stmt  
+    ;
+
+    stmt: PrintKw expr    { cout<<$2<<endl; }
+        | Ident OpAssign expr  { vars.emplace($1,$3); }
+        | expr { cout<<"Resultado = "<<$1<<endl; }
     ;
     
     EOL_List: EOL_List EOL {  }

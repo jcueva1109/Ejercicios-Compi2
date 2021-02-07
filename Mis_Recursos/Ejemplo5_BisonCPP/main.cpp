@@ -6,9 +6,15 @@ using namespace std;
 
 int main(){
 
-    unordered_map<std::string, double> vars;
-    Expr::Parser parser(vars);
-    parser();
+    try{
+
+        unordered_map<std::string, double> vars;
+        Expr::Parser parser(vars);
+        parser();
+
+    }catch(runtime_error &e){
+        cout<<e.what()<<endl;
+    }
     
     return 0;
 

@@ -18,7 +18,7 @@
 
 %%
 
-"//"[^\n]* return Expr::Parser::token::LineComment;
+"//"[^\n]* ;
 "/*" {BEGIN(BlockComment);}
 [\n]+ return Expr::Parser::token::EOL;
 [ ] ;
@@ -28,6 +28,8 @@
 "/" return Expr::Parser::token::OpDiv;
 "(" return Expr::Parser::token::LParenthesis;
 ")" return Expr::Parser::token::RParenthesis;
+"print" return Expr::Parser::token::PrintKw;
+"=" return Expr::Parser::token::OpAssign;
 [0-9]+("."[0-9]+)? { yylval->emplace<double>(atof(yytext));  return Expr::Parser::token::Number; }
 [_a-zA-Z][_a-zA-Z0-9]* { yylval->emplace<std::string> (yytext, yyleng);  return Expr::Parser::token::Ident; }
 . return Expr::Parser::token::Error;

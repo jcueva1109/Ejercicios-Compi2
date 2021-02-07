@@ -374,8 +374,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 16
-#define YY_END_OF_BUFFER 17
+#define YY_NUM_RULES 18
+#define YY_END_OF_BUFFER 19
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -383,11 +383,12 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[29] =
+static const flex_int16_t yy_accept[35] =
     {   0,
-        0,    0,    0,    0,   17,   13,    3,    4,    9,   10,
-        7,    5,    6,    8,   11,   12,   15,   15,    3,    2,
-        1,    0,   11,   12,   14,    1,   11,    0
+        0,    0,    0,    0,   19,   15,    3,    4,    9,   10,
+        7,    5,    6,    8,   13,   12,   14,   14,   17,   17,
+        3,    2,    1,    0,   13,   14,   14,   16,    1,   13,
+       14,   14,   11,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -398,14 +399,14 @@ static const YY_CHAR yy_ec[256] =
         1,    3,    1,    1,    1,    1,    1,    1,    1,    4,
         5,    6,    7,    1,    8,    9,   10,   11,   11,   11,
        11,   11,   11,   11,   11,   11,   11,    1,    1,    1,
-        1,    1,    1,    1,   12,   12,   12,   12,   12,   12,
-       12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-        1,    1,    1,    1,   12,    1,   12,   12,   12,   12,
+       12,    1,    1,    1,   13,   13,   13,   13,   13,   13,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+        1,    1,    1,    1,   13,    1,   13,   13,   13,   13,
 
-       12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,   12,    1,    1,    1,    1,    1,    1,    1,    1,
+       13,   13,   13,   13,   14,   13,   13,   13,   13,   15,
+       13,   16,   13,   17,   13,   18,   13,   13,   13,   13,
+       13,   13,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -422,50 +423,54 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[13] =
+static const YY_CHAR yy_meta[19] =
     {   0,
         1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        3,    3
+        3,    1,    3,    3,    3,    3,    3,    3
     } ;
 
-static const flex_int16_t yy_base[32] =
+static const flex_int16_t yy_base[38] =
     {   0,
-        0,    0,   24,   23,   28,   31,   25,   31,   31,   31,
-       31,   31,   31,    7,    9,    0,   31,   15,   17,   31,
-        0,    5,    0,    0,   31,    0,    4,   31,   20,   11,
-       23
+        0,    0,   36,   35,   40,   43,   37,   43,   43,   43,
+       43,   43,   43,   13,   11,   43,    0,   21,   43,   27,
+       34,   43,    0,   24,   15,    0,   20,   43,    0,   22,
+       16,    7,    0,   43,   26,   18,   29
     } ;
 
-static const flex_int16_t yy_def[32] =
+static const flex_int16_t yy_def[38] =
     {   0,
-       28,    1,   29,   29,   28,   28,   28,   28,   28,   28,
-       28,   28,   28,   28,   28,   30,   28,   28,   28,   28,
-       31,   28,   15,   30,   28,   31,   28,    0,   28,   28,
-       28
+       34,    1,   35,   35,   34,   34,   34,   34,   34,   34,
+       34,   34,   34,   34,   34,   34,   36,   36,   34,   34,
+       34,   34,   37,   34,   34,   36,   36,   34,   37,   34,
+       36,   36,   36,    0,   34,   34,   34
     } ;
 
-static const flex_int16_t yy_nxt[44] =
+static const flex_int16_t yy_nxt[62] =
     {   0,
         6,    7,    8,    9,   10,   11,   12,   13,    6,   14,
-       15,   16,   20,   24,   27,   27,   21,   22,   19,   23,
-       17,   17,   17,   26,   25,   26,   19,   28,   18,   18,
-        5,   28,   28,   28,   28,   28,   28,   28,   28,   28,
-       28,   28,   28
+       15,   16,   17,   17,   17,   18,   17,   17,   22,   24,
+       26,   25,   23,   24,   33,   25,   19,   19,   19,   29,
+       32,   29,   30,   31,   30,   21,   28,   27,   21,   34,
+       20,   20,    5,   34,   34,   34,   34,   34,   34,   34,
+       34,   34,   34,   34,   34,   34,   34,   34,   34,   34,
+       34
     } ;
 
-static const flex_int16_t yy_chk[44] =
+static const flex_int16_t yy_chk[62] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,   14,   30,   27,   22,   14,   15,   19,   15,
-       29,   29,   29,   31,   18,   31,    7,    5,    4,    3,
-       28,   28,   28,   28,   28,   28,   28,   28,   28,   28,
-       28,   28,   28
+        1,    1,    1,    1,    1,    1,    1,    1,   14,   15,
+       36,   15,   14,   25,   32,   25,   35,   35,   35,   37,
+       31,   37,   30,   27,   24,   21,   20,   18,    7,    5,
+        4,    3,   34,   34,   34,   34,   34,   34,   34,   34,
+       34,   34,   34,   34,   34,   34,   34,   34,   34,   34,
+       34
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[17] =
+static const flex_int32_t yy_rule_can_match_eol[19] =
     {   0,
-0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,     };
+0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -492,9 +497,9 @@ char *yytext;
 
     #define YY_DECL double yylex(Expr::Parser::semantic_type *yylval)
 
-#line 496 "expr_lexer.cpp"
+#line 501 "expr_lexer.cpp"
 
-#line 498 "expr_lexer.cpp"
+#line 503 "expr_lexer.cpp"
 
 #define INITIAL 0
 #define BlockComment 1
@@ -715,7 +720,7 @@ YY_DECL
 #line 19 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
 
 
-#line 719 "expr_lexer.cpp"
+#line 724 "expr_lexer.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -742,13 +747,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 29 )
+				if ( yy_current_state >= 35 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 31 );
+		while ( yy_base[yy_current_state] != 43 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -785,7 +790,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 21 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-return Expr::Parser::token::LineComment;
+;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -836,39 +841,49 @@ return Expr::Parser::token::RParenthesis;
 case 11:
 YY_RULE_SETUP
 #line 31 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-{ yylval->emplace<double>(atof(yytext));  return Expr::Parser::token::Number; }
+return Expr::Parser::token::PrintKw;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 32 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-{ yylval->emplace<std::string> (yytext, yyleng);  return Expr::Parser::token::Ident; }
+return Expr::Parser::token::OpAssign;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 33 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-return Expr::Parser::token::Error;
+{ yylval->emplace<double>(atof(yytext));  return Expr::Parser::token::Number; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 35 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-{BEGIN(INITIAL);}
+#line 34 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+{ yylval->emplace<std::string> (yytext, yyleng);  return Expr::Parser::token::Ident; }
 	YY_BREAK
 case 15:
-/* rule 15 can match eol */
 YY_RULE_SETUP
-#line 36 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-{  }
-	YY_BREAK
-case YY_STATE_EOF(BlockComment):
-#line 37 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
-{ printf("Olvidaste cerrar el comentario de bloque!\n"); }
+#line 35 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+return Expr::Parser::token::Error;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
+#line 37 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+{BEGIN(INITIAL);}
+	YY_BREAK
+case 17:
+/* rule 17 can match eol */
+YY_RULE_SETUP
+#line 38 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+{  }
+	YY_BREAK
+case YY_STATE_EOF(BlockComment):
 #line 39 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+{ printf("Olvidaste cerrar el comentario de bloque!\n"); }
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 41 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 872 "expr_lexer.cpp"
+#line 887 "expr_lexer.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1165,7 +1180,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 29 )
+			if ( yy_current_state >= 35 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1193,11 +1208,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 29 )
+		if ( yy_current_state >= 35 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 28);
+	yy_is_jam = (yy_current_state == 34);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1885,5 +1900,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 39 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
+#line 41 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.l"
 

@@ -420,12 +420,14 @@ namespace  Expr  {
         OpDiv = 261,
         LParenthesis = 262,
         RParenthesis = 263,
-        Number = 264,
-        Ident = 265,
-        EOL = 266,
-        LineComment = 267,
-        BlockComment = 268,
-        Error = 269
+        PrintKw = 264,
+        OpAssign = 265,
+        Number = 266,
+        Ident = 267,
+        EOL = 268,
+        LineComment = 269,
+        BlockComment = 270,
+        Error = 271
       };
     };
 
@@ -521,14 +523,14 @@ namespace  Expr  {
         // Type destructor.
 switch (yytype)
     {
-      case 9: // Number
-      case 18: // expr
-      case 19: // term
-      case 20: // factor
+      case 11: // Number
+      case 22: // expr
+      case 23: // term
+      case 24: // factor
         value.template destroy< double > ();
         break;
 
-      case 10: // Ident
+      case 12: // Ident
         value.template destroy< std::string > ();
         break;
 
@@ -605,13 +607,13 @@ switch (yytype)
       symbol_type (int tok)
         : super_type(token_type (tok))
       {
-        YY_ASSERT (tok == 0 || tok == token::OpAdd || tok == token::OpSub || tok == token::OpMul || tok == token::OpDiv || tok == token::LParenthesis || tok == token::RParenthesis || tok == token::EOL || tok == token::LineComment || tok == token::BlockComment || tok == token::Error);
+        YY_ASSERT (tok == 0 || tok == token::OpAdd || tok == token::OpSub || tok == token::OpMul || tok == token::OpDiv || tok == token::LParenthesis || tok == token::RParenthesis || tok == token::PrintKw || tok == token::OpAssign || tok == token::EOL || tok == token::LineComment || tok == token::BlockComment || tok == token::Error);
       }
 #else
       symbol_type (int tok)
         : super_type(token_type (tok))
       {
-        YY_ASSERT (tok == 0 || tok == token::OpAdd || tok == token::OpSub || tok == token::OpMul || tok == token::OpDiv || tok == token::LParenthesis || tok == token::RParenthesis || tok == token::EOL || tok == token::LineComment || tok == token::BlockComment || tok == token::Error);
+        YY_ASSERT (tok == 0 || tok == token::OpAdd || tok == token::OpSub || tok == token::OpMul || tok == token::OpDiv || tok == token::LParenthesis || tok == token::RParenthesis || tok == token::PrintKw || tok == token::OpAssign || tok == token::EOL || tok == token::LineComment || tok == token::BlockComment || tok == token::Error);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -764,6 +766,36 @@ switch (yytype)
       make_RParenthesis ()
       {
         return symbol_type (token::RParenthesis);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_PrintKw ()
+      {
+        return symbol_type (token::PrintKw);
+      }
+#else
+      static
+      symbol_type
+      make_PrintKw ()
+      {
+        return symbol_type (token::PrintKw);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OpAssign ()
+      {
+        return symbol_type (token::OpAssign);
+      }
+#else
+      static
+      symbol_type
+      make_OpAssign ()
+      {
+        return symbol_type (token::OpAssign);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1162,10 +1194,10 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 24,     ///< Last index in yytable_.
-      yynnts_ = 6,  ///< Number of nonterminal symbols.
-      yyfinal_ = 9, ///< Termination state number.
-      yyntokens_ = 15  ///< Number of tokens.
+      yylast_ = 26,     ///< Last index in yytable_.
+      yynnts_ = 8,  ///< Number of nonterminal symbols.
+      yyfinal_ = 4, ///< Termination state number.
+      yyntokens_ = 17  ///< Number of tokens.
     };
 
 
@@ -1176,7 +1208,7 @@ switch (yytype)
 
 #line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
 } //  Expr 
-#line 1180 "tokens.h"
+#line 1212 "tokens.h"
 
 
 
