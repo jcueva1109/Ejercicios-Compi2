@@ -1,0 +1,24 @@
+GLL1
+
+input -> stmt_list
+
+stmt_list -> E stmt_listP
+
+stmt_listP -> EOL E stmt_listP
+            | %epsilon
+            
+E -> TE'
+
+E' -> %epsilon
+        | +TE'
+        | -TE'
+    
+T -> FT'
+
+T' -> %epsilon
+    | *FT'
+    | /FT'
+
+F -> IDENT
+    | NUMBER
+    | (E)

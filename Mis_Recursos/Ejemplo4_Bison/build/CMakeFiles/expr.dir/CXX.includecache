@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jcueva1109/Documents/Compi2/Ejemplo4_Bison/main.cpp
+iostream
+-
+fstream
+-
+tokens.h
+/home/jcueva1109/Documents/Compi2/Ejemplo4_Bison/tokens.h
+
+tokens.h
+unordered_map
+-
+string
+-
+

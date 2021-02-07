@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/main.cpp
+iostream
+-
+fstream
+-
+tokens.h
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/tokens.h
+parser.h
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/parser.h
+
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/parser.cpp
+iostream
+-
+parser.h
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/parser.h
+string
+-
+
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/parser.h
+iostream
+-
+tokens.h
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/tokens.h
+
+/home/jcueva1109/Documents/Compi2/Ejemplo3/ExpresionesAritmeticas/tokens.h
+

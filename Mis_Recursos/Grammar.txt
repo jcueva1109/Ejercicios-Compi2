@@ -1,0 +1,27 @@
+Grammar
+=======
+
+input -> stmt_list
+
+stmt_list -> stmt_list ; stmt 
+            | stmt
+
+stmt -> assign
+        | PRINT expr
+        | fun_decl
+
+assign -> IDENT = expr
+fun_decl -> IDENT ( arg ) = expr
+
+arg -> NUMBER
+      | IDENT
+
+expr ->   expr + term
+        | term
+
+term -> term * factor
+        | factor
+
+factor -> IDENT
+        | NUMBER
+        | ( expr )

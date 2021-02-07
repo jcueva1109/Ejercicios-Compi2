@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../tokens.h
+
+/home/jcueva1109/Documents/Compi2/Ejemplo2/Ejemplo2_V2_Inge/build/lexer.cpp
+stdio.h
+-
+string.h
+-
+errno.h
+-
+stdlib.h
+-
+inttypes.h
+-
+iostream
+-
+tokens.h
+/home/jcueva1109/Documents/Compi2/Ejemplo2/Ejemplo2_V2_Inge/build/tokens.h
+unistd.h
+-
+
