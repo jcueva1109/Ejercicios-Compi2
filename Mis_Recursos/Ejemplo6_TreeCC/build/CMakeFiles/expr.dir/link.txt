@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/expr.dir/expr_lexer.cpp.o CMakeFiles/expr.dir/expr_parser.cpp.o CMakeFiles/expr.dir/treecc.cpp.o CMakeFiles/expr.dir/main.cpp.o  -o expr 

@@ -1,0 +1,75 @@
+Los cambios que hacemos son el .y
+
+%option lang = "c++"
+%option namespace = "Ast"
+
+%decls %{
+
+    ///Header File
+
+%}
+
+%{
+
+    //Source File
+
+%}
+
+%node Expr %abstract %typedef
+//abstract significa que ese nodo no se puede instanciar
+%node BinaryExpr Expr %abstract = { 
+
+    Expr *expr1;
+    Expr *expr2;
+
+} //hereda de Expr, y tiene dos nodos hijos
+
+//todas estas heredan de BinaryExpr
+%node Ast::AddExpr BinaryExpr
+%node SubExpr BinaryExpr
+%node MulExpr BinaryExpr
+%node DivExpr BinaryExpr
+%node NumExpr = {
+
+    int val;
+
+}
+
+/*
+Esto va en el .y, en la accion!
+new Ast::AddExpr (e1, e2)
+new SubExpr (e1, e2)
+new MulExpr (e1, e2)
+new DivExpr (e1, e2)
+new NumExpr(10)
+*/
+
+//Operations
+%operation int eval(Expr *e) = {0}   //Esto utiliza un patron visitador
+//Para usar el esquema VIRTUAL
+%operation %virtual eval(Expr *e) = {0}
+
+//¡¡La buena practica dice que tengo que hacer el eval para cada funcion!!
+
+eval(AddExpr){ 
+    
+    int n1 = eval(e->expr1);
+    int n2 = eval(e->expr2);
+    return n1 + n2; 
+    
+}
+
+eval(SubExpr){ return e1 - e2; }
+eval(MulExpr){ return e1 * e2; }
+eval(DivExpr){ return e1 / e2; }
+
+//¡¡La buena practica dice que tengo que hacer el eval para cada funcion!!
+
+eval(BinaryExpr){
+    return 10;
+}
+
+eval(NumExpr){ return  val; }
+
+
+¡¡en el .y no olvidar darle include al .h que genera treecc!!

@@ -36,7 +36,7 @@
 
 
 // First part of user prologue.
-#line 17 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 18 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 
 
     #include <iostream>
@@ -44,6 +44,7 @@
     #include <unordered_map>
     #include <string>
     #include "tokens.h"
+    #include "treecc.h"
     using namespace std;
 
     double yylex(Expr::Parser::semantic_type *yylval);
@@ -57,7 +58,7 @@
     }
 
 
-#line 61 "expr_parser.cpp"
+#line 62 "expr_parser.cpp"
 
 
 #include "tokens.h"
@@ -133,9 +134,9 @@
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 namespace  Expr  {
-#line 139 "expr_parser.cpp"
+#line 140 "expr_parser.cpp"
 
 
   /* Return YYSTR after stripping away unnecessary quotes and
@@ -209,10 +210,13 @@ namespace  Expr  {
   {
     switch (this->type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.move< AST::Expr* > (std::move (that.value));
+        break;
+
+      case 11: // Number
         value.move< double > (std::move (that.value));
         break;
 
@@ -235,10 +239,13 @@ namespace  Expr  {
   {
     switch (this->type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.copy< AST::Expr* > (YY_MOVE (that.value));
+        break;
+
+      case 11: // Number
         value.copy< double > (YY_MOVE (that.value));
         break;
 
@@ -269,10 +276,13 @@ namespace  Expr  {
     super_type::move (s);
     switch (this->type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.move< AST::Expr* > (YY_MOVE (s.value));
+        break;
+
+      case 11: // Number
         value.move< double > (YY_MOVE (s.value));
         break;
 
@@ -371,10 +381,13 @@ namespace  Expr  {
   {
     switch (that.type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.YY_MOVE_OR_COPY< AST::Expr* > (YY_MOVE (that.value));
+        break;
+
+      case 11: // Number
         value.YY_MOVE_OR_COPY< double > (YY_MOVE (that.value));
         break;
 
@@ -398,10 +411,13 @@ namespace  Expr  {
   {
     switch (that.type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.move< AST::Expr* > (YY_MOVE (that.value));
+        break;
+
+      case 11: // Number
         value.move< double > (YY_MOVE (that.value));
         break;
 
@@ -425,10 +441,13 @@ namespace  Expr  {
     state = that.state;
     switch (that.type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.copy< AST::Expr* > (that.value);
+        break;
+
+      case 11: // Number
         value.copy< double > (that.value);
         break;
 
@@ -450,10 +469,13 @@ namespace  Expr  {
     state = that.state;
     switch (that.type_get ())
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.move< AST::Expr* > (that.value);
+        break;
+
+      case 11: // Number
         value.move< double > (that.value);
         break;
 
@@ -706,10 +728,13 @@ namespace  Expr  {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        yylhs.value.emplace< AST::Expr* > ();
+        break;
+
+      case 11: // Number
         yylhs.value.emplace< double > ();
         break;
 
@@ -733,103 +758,81 @@ namespace  Expr  {
           switch (yyn)
             {
   case 5:
-#line 65 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                          { cout<<yystack_[0].value.as < double > ()<<endl; }
-#line 739 "expr_parser.cpp"
+#line 67 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                          { cout<<AST::eval(yystack_[0].value.as < AST::Expr* > ())<<endl; }
+#line 764 "expr_parser.cpp"
     break;
 
   case 6:
-#line 66 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                         {cout<<yystack_[0].value.as < std::string > ()<<endl; }
-#line 745 "expr_parser.cpp"
+#line 68 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+               { cout<<"Resultado = "<<AST::eval(yystack_[0].value.as < AST::Expr* > ())<<endl; }
+#line 770 "expr_parser.cpp"
     break;
 
   case 7:
-#line 67 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                               { vars[yystack_[2].value.as < std::string > ()] = yystack_[0].value.as < double > (); }
-#line 751 "expr_parser.cpp"
-    break;
-
-  case 8:
-#line 68 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-               { cout<<"Resultado = "<<yystack_[0].value.as < double > ()<<endl; }
-#line 757 "expr_parser.cpp"
-    break;
-
-  case 9:
-#line 71 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 71 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
                            {  }
-#line 763 "expr_parser.cpp"
+#line 776 "expr_parser.cpp"
+    break;
+
+  case 10:
+#line 76 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                          { yylhs.value.as < AST::Expr* > () = new AST::AddExpr(yystack_[2].value.as < AST::Expr* > (),yystack_[0].value.as < AST::Expr* > ()); }
+#line 782 "expr_parser.cpp"
+    break;
+
+  case 11:
+#line 77 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                          { yylhs.value.as < AST::Expr* > () = new AST::SubExpr(yystack_[2].value.as < AST::Expr* > (),yystack_[0].value.as < AST::Expr* > ()); }
+#line 788 "expr_parser.cpp"
     break;
 
   case 12:
-#line 76 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () + yystack_[0].value.as < double > (); }
-#line 769 "expr_parser.cpp"
+#line 78 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+               { yylhs.value.as < AST::Expr* > () = yystack_[0].value.as < AST::Expr* > (); }
+#line 794 "expr_parser.cpp"
     break;
 
   case 13:
-#line 77 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                          { yylhs.value.as < double > () = yystack_[2].value.as < double > () - yystack_[0].value.as < double > (); }
-#line 775 "expr_parser.cpp"
+#line 81 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                            { yylhs.value.as < AST::Expr* > () = new AST::MulExpr(yystack_[2].value.as < AST::Expr* > (),yystack_[0].value.as < AST::Expr* > ()); }
+#line 800 "expr_parser.cpp"
     break;
 
   case 14:
-#line 78 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-               { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
-#line 781 "expr_parser.cpp"
-    break;
-
-  case 15:
-#line 81 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                            { yylhs.value.as < double > () = yystack_[2].value.as < double > () * yystack_[0].value.as < double > (); }
-#line 787 "expr_parser.cpp"
-    break;
-
-  case 16:
-#line 82 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 82 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
                             { 
-
-            if(yystack_[0].value.as < double > () == 0){
-                throw runtime_error("Error: No se puede dividir entre 0!\n");
+            
+            if(yystack_[0].value.as < AST::Expr* > () == 0){
+                throw std::string("Error: No se puede dividir entre 0!");
             }else{
-                yylhs.value.as < double > () = yystack_[2].value.as < double > () / yystack_[0].value.as < double > ();
+                yylhs.value.as < AST::Expr* > () = new AST::DivExpr(yystack_[2].value.as < AST::Expr* > (),yystack_[0].value.as < AST::Expr* > ());
             }
 
         }
-#line 801 "expr_parser.cpp"
+#line 814 "expr_parser.cpp"
+    break;
+
+  case 15:
+#line 91 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                 { yylhs.value.as < AST::Expr* > () = yystack_[0].value.as < AST::Expr* > (); }
+#line 820 "expr_parser.cpp"
+    break;
+
+  case 16:
+#line 94 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                   { yylhs.value.as < AST::Expr* > () = new AST::NumExpr(yystack_[0].value.as < double > ()); }
+#line 826 "expr_parser.cpp"
     break;
 
   case 17:
-#line 91 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                 { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
-#line 807 "expr_parser.cpp"
-    break;
-
-  case 18:
-#line 94 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                   { yylhs.value.as < double > () = yystack_[0].value.as < double > (); }
-#line 813 "expr_parser.cpp"
-    break;
-
-  case 19:
-#line 95 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-               {
-
-            yylhs.value.as < double > () = vars[yystack_[0].value.as < std::string > ()];
-
-        }
-#line 823 "expr_parser.cpp"
-    break;
-
-  case 20:
-#line 100 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
-                                         { yylhs.value.as < double > () = yystack_[1].value.as < double > (); }
-#line 829 "expr_parser.cpp"
+#line 95 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
+                                         { yylhs.value.as < AST::Expr* > () = yystack_[1].value.as < AST::Expr* > (); }
+#line 832 "expr_parser.cpp"
     break;
 
 
-#line 833 "expr_parser.cpp"
+#line 836 "expr_parser.cpp"
 
             default:
               break;
@@ -1096,81 +1099,74 @@ namespace  Expr  {
   }
 
 
-  const signed char  Parser ::yypact_ninf_ = -15;
+  const signed char  Parser ::yypact_ninf_ = -14;
 
   const signed char  Parser ::yytable_ninf_ = -1;
 
   const signed char
    Parser ::yypact_[] =
   {
-     -12,   -15,    21,    -4,   -15,    11,     4,   -15,    -6,   -15,
-     -12,   -15,     9,    20,   -15,   -15,    16,   -15,     9,    11,
-      -4,    11,    11,    11,    11,   -15,     9,   -15,    20,    20,
-     -15,   -15
+     -13,   -14,     9,    -7,   -14,     1,     1,   -14,   -14,   -13,
+     -14,    10,    11,   -14,     2,    10,    -7,     1,     1,     1,
+       1,   -14,   -14,    11,    11,   -14,   -14
   };
 
   const signed char
    Parser ::yydefact_[] =
   {
-      11,    10,     0,     0,     1,     0,     0,    18,    19,     9,
-      11,     4,     8,    14,    17,    19,     0,     6,     5,     0,
-       2,     0,     0,     0,     0,    20,     7,     3,    12,    13,
-      15,    16
+       9,     8,     0,     0,     1,     0,     0,    16,     7,     9,
+       4,     6,    12,    15,     0,     5,     2,     0,     0,     0,
+       0,    17,     3,    10,    11,    13,    14
   };
 
   const signed char
    Parser ::yypgoto_[] =
   {
-     -15,   -15,   -15,   -14,    -1,    -5,     6,     7
+     -14,   -14,   -14,    -5,    -6,    13,     3,     4
   };
 
   const signed char
    Parser ::yydefgoto_[] =
   {
-      -1,     2,    10,    11,     3,    12,    13,    14
+      -1,     2,     9,    10,     3,    11,    12,    13
   };
 
   const signed char
    Parser ::yytable_[] =
   {
-      16,    18,     1,     5,    19,     6,    27,     7,     8,    20,
-       9,     5,    21,    22,    26,     7,    15,    17,     5,    21,
-      22,     4,     7,    15,    25,    23,    24,    28,    29,     0,
-      30,    31
+       5,     1,     6,    16,     7,    17,    18,     8,     5,     4,
+      21,    22,     7,    17,    18,     0,    19,    20,    14,    15,
+      23,    24,     0,    25,    26
   };
 
   const signed char
    Parser ::yycheck_[] =
   {
-       5,     6,    14,     7,    10,     9,    20,    11,    12,    10,
-      14,     7,     3,     4,    19,    11,    12,    13,     7,     3,
-       4,     0,    11,    12,     8,     5,     6,    21,    22,    -1,
-      23,    24
+       7,    14,     9,     9,    11,     3,     4,    14,     7,     0,
+       8,    16,    11,     3,     4,    -1,     5,     6,     5,     6,
+      17,    18,    -1,    19,    20
   };
 
   const signed char
    Parser ::yystos_[] =
   {
-       0,    14,    19,    22,     0,     7,     9,    11,    12,    14,
-      20,    21,    23,    24,    25,    12,    23,    13,    23,    10,
-      22,     3,     4,     5,     6,     8,    23,    21,    24,    24,
-      25,    25
+       0,    14,    19,    22,     0,     7,     9,    11,    14,    20,
+      21,    23,    24,    25,    23,    23,    22,     3,     4,     5,
+       6,     8,    21,    24,    24,    25,    25
   };
 
   const signed char
    Parser ::yyr1_[] =
   {
-       0,    18,    19,    20,    20,    21,    21,    21,    21,    22,
-      22,    22,    23,    23,    23,    24,    24,    24,    25,    25,
-      25
+       0,    18,    19,    20,    20,    21,    21,    22,    22,    22,
+      23,    23,    23,    24,    24,    24,    25,    25
   };
 
   const signed char
    Parser ::yyr2_[] =
   {
-       0,     2,     3,     3,     1,     2,     2,     3,     1,     2,
-       1,     0,     3,     3,     1,     3,     3,     1,     1,     1,
-       3
+       0,     2,     3,     3,     1,     2,     1,     2,     1,     0,
+       3,     3,     1,     3,     3,     1,     1,     3
   };
 
 
@@ -1190,9 +1186,8 @@ namespace  Expr  {
   const signed char
    Parser ::yyrline_[] =
   {
-       0,    59,    59,    61,    62,    65,    66,    67,    68,    71,
-      72,    73,    76,    77,    78,    81,    82,    91,    94,    95,
-     100
+       0,    61,    61,    63,    64,    67,    68,    71,    72,    73,
+      76,    77,    78,    81,    82,    91,    94,    95
   };
 
   // Print the state stack on the debug stream.
@@ -1272,8 +1267,8 @@ namespace  Expr  {
       return yy_undef_token_;
   }
 
-#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 } //  Expr 
-#line 1278 "expr_parser.cpp"
+#line 1273 "expr_parser.cpp"
 
-#line 103 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 98 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"

@@ -1,0 +1,69 @@
+%option lang = "C++"
+%option namespace = "AST"
+
+%decls %{  
+    //Header file
+    #include <string>
+%}
+
+%{
+    //Source File
+    #include "treecc.h"
+%}
+
+%node Expr %abstract %typedef
+%node BinaryExpr Expr %abstract = {
+
+    Expr *expr1;
+    Expr *expr2;
+
+}
+
+%node AddExpr BinaryExpr
+%node SubExpr BinaryExpr
+%node MulExpr BinaryExpr
+%node DivExpr BinaryExpr
+%node NumExpr Expr = {
+
+    double val;
+
+}
+
+%operation double eval(Expr *e) = {0}
+
+eval(AddExpr){
+
+    double n1 = eval(e->expr1);
+    double n2 = eval(e->expr2);
+    return n1+n2;
+
+}
+
+eval(SubExpr){
+
+    double n1 = eval(e->expr1);
+    double n2 = eval(e->expr2);
+    return n1-n2;
+
+}
+
+eval(MulExpr){
+
+    double n1 = eval(e->expr1);
+    double n2 = eval(e->expr2);
+    return n1 * n2;
+
+}
+
+eval(DivExpr){
+
+    double n1 = eval(e->expr1);
+    double n2 = eval(e->expr2);
+    return n1/n2;
+}
+
+eval(NumExpr){
+
+    return e->val;
+
+}

@@ -44,14 +44,15 @@
 #ifndef YY_YY_TOKENS_H_INCLUDED
 # define YY_YY_TOKENS_H_INCLUDED
 // "%code requires" blocks.
-#line 10 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 10 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 
 
     #include <unordered_map>
     #include <string>
+    #include "treecc.h"
 
 
-#line 55 "tokens.h"
+#line 56 "tokens.h"
 
 
 # include <cstdlib> // std::abort
@@ -184,9 +185,9 @@
 # define YYDEBUG 0
 #endif
 
-#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 namespace  Expr  {
-#line 190 "tokens.h"
+#line 191 "tokens.h"
 
 
 
@@ -368,15 +369,17 @@ namespace  Expr  {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
-      // Number
       // expr
       // term
       // factor
-      char dummy1[sizeof (double)];
+      char dummy1[sizeof (AST::Expr*)];
+
+      // Number
+      char dummy2[sizeof (double)];
 
       // Ident
       // String
-      char dummy2[sizeof (std::string)];
+      char dummy3[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -481,6 +484,17 @@ namespace  Expr  {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, AST::Expr*&& v)
+        : Base (t)
+        , value (std::move (v))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const AST::Expr*& v)
+        : Base (t)
+        , value (v)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, double&& v)
         : Base (t)
         , value (std::move (v))
@@ -525,10 +539,13 @@ namespace  Expr  {
         // Type destructor.
 switch (yytype)
     {
-      case 11: // Number
       case 23: // expr
       case 24: // term
       case 25: // factor
+        value.template destroy< AST::Expr* > ();
+        break;
+
+      case 11: // Number
         value.template destroy< double > ();
         break;
 
@@ -1212,7 +1229,7 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 31,     ///< Last index in yytable_.
+      yylast_ = 24,     ///< Last index in yytable_.
       yynnts_ = 8,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyntokens_ = 18  ///< Number of tokens.
@@ -1224,9 +1241,9 @@ switch (yytype)
   };
 
 
-#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo5_BisonCPP/expr.y"
+#line 6 "/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/expr.y"
 } //  Expr 
-#line 1230 "tokens.h"
+#line 1247 "tokens.h"
 
 
 

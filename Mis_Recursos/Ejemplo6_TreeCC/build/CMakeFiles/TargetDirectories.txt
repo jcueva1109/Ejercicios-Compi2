@@ -1,0 +1,3 @@
+/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/build/CMakeFiles/rebuild_cache.dir
+/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/build/CMakeFiles/edit_cache.dir
+/home/jcueva1109/Documents/Compi2/Ejercicios-Compi2/Mis_Recursos/Ejemplo6_TreeCC/build/CMakeFiles/expr.dir

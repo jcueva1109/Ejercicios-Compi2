@@ -11,6 +11,7 @@
 
     #include <unordered_map>
     #include <string>
+    #include "treecc.h"
 
 }
 
@@ -21,6 +22,7 @@
     #include <unordered_map>
     #include <string>
     #include "tokens.h"
+    #include "treecc.h"
     using namespace std;
 
     double yylex(Expr::Parser::semantic_type *yylval);
@@ -52,7 +54,7 @@
 %token BlockComment
 %token Error
 
-%type<double> expr term factor
+%type<AST::Expr*> expr term factor
 
 %%
 
@@ -62,10 +64,8 @@
             | stmt  
     ;
 
-    stmt: PrintKw expr    { cout<<$2<<endl; }
-        | PrintKw String {cout<<$2<<endl; }
-        | Ident OpAssign expr  { vars[$1] = $3; }
-        | expr { cout<<"Resultado = "<<$1<<endl; }
+    stmt: PrintKw expr    { cout<<AST::eval($2)<<endl; }
+        | expr { cout<<"Resultado = "<<AST::eval($1)<<endl; }
     ;
     
     EOL_List: EOL_List EOL {  }
@@ -73,30 +73,19 @@
             | 
     ;
 
-    expr: expr OpAdd term { $$ = $1 + $3; }
-        | expr OpSub term { $$ = $1 - $3; }
+    expr: expr OpAdd term { $$ = new AST::AddExpr($1,$3); }
+        | expr OpSub term { $$ = new AST::SubExpr($1,$3); }
         | term { $$ = $1; }
     ;
 
-    term: term OpMul factor { $$ = $1 * $3; }
+    term: term OpMul factor { $$ = new AST::MulExpr($1,$3); }
         | term OpDiv factor { 
-
-            if($3 == 0){
-                throw runtime_error("Error: No se puede dividir entre 0!\n");
-            }else{
-                $$ = $1 / $3;
-            }
-
+            $$ = new AST::DivExpr($1,$3);
         }
         | factor { $$ = $1; }
     ;
 
-    factor: Number { $$ = $1; }
-        | Ident{
-
-            $$ = vars[$1];
-
-        }
+    factor: Number { $$ = new AST::NumExpr($1); }
         | LParenthesis expr RParenthesis { $$ = $2; }
     ;
 
